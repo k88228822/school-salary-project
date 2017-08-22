@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yufeimen.application.mapper.SalaryMapper" >
+  <resultMap id="BaseResultMap" type="com.yufeimen.application.model.Salary" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="data_created" property="dataCreated" jdbcType="VARCHAR" />
+    <result column="data_creator" property="dataCreator" jdbcType="VARCHAR" />
+    <result column="data_updated" property="dataUpdated" jdbcType="VARCHAR" />
+    <result column="data_updator" property="dataUpdator" jdbcType="VARCHAR" />
+    <result column="isDeleted" property="isdeleted" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="job_salary" property="jobSalary" jdbcType="DOUBLE" />
+    <result column="wage_pay" property="wagePay" jdbcType="DOUBLE" />
+    <result column="subsidy" property="subsidy" jdbcType="DOUBLE" />
+    <result column="job_subsidy" property="jobSubsidy" jdbcType="DOUBLE" />
+    <result column="house_subsidy" property="houseSubsidy" jdbcType="DOUBLE" />
+    <result column="manager_subsidy" property="managerSubsidy" jdbcType="DOUBLE" />
+    <result column="responsibility_subsidy" property="responsibilitySubsidy" jdbcType="DOUBLE" />
+    <result column="teacher_subsidy" property="teacherSubsidy" jdbcType="DOUBLE" />
+    <result column="teacher_assist_subsidy" property="teacherAssistSubsidy" jdbcType="DOUBLE" />
+    <result column="achievement_subsidy" property="achievementSubsidy" jdbcType="DOUBLE" />
+    <result column="subsidy_add" property="subsidyAdd" jdbcType="DOUBLE" />
+    <result column="special_subsidy" property="specialSubsidy" jdbcType="DOUBLE" />
+    <result column="total_salary" property="totalSalary" jdbcType="DOUBLE" />
+    <result column="pension_base" property="pensionBase" jdbcType="DOUBLE" />
+    <result column="pension_unit" property="pensionUnit" jdbcType="DOUBLE" />
+    <result column="pension_personal" property="pensionPersonal" jdbcType="DOUBLE" />
+    <result column="unemployment_insurance_unit" property="unemploymentInsuranceUnit" jdbcType="DOUBLE" />
+    <result column="unemployment_insurance_personal" property="unemploymentInsurancePersonal" jdbcType="DOUBLE" />
+    <result column="injury_work_unsurance_unit" property="injuryWorkUnsuranceUnit" jdbcType="DOUBLE" />
+    <result column="medical_pay_base" property="medicalPayBase" jdbcType="DOUBLE" />
+    <result column="medical_insurance_unit" property="medicalInsuranceUnit" jdbcType="DOUBLE" />
+    <result column="medical_insurance_personal" property="medicalInsurancePersonal" jdbcType="DOUBLE" />
+    <result column="bear_insurance" property="bearInsurance" jdbcType="DOUBLE" />
+    <result column="decimal_medical_unit" property="decimalMedicalUnit" jdbcType="DOUBLE" />
+    <result column="decimal_medical_personal" property="decimalMedicalPersonal" jdbcType="DOUBLE" />
+    <result column="house_pay_base" property="housePayBase" jdbcType="DOUBLE" />
+    <result column="house_pay_unit" property="housePayUnit" jdbcType="DOUBLE" />
+    <result column="house_pay_personal" property="housePayPersonal" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, data_created, data_creator, data_updated, data_updator, isDeleted, name, time, 
+    job_salary, wage_pay, subsidy, job_subsidy, house_subsidy, manager_subsidy, responsibility_subsidy, 
+    teacher_subsidy, teacher_assist_subsidy, achievement_subsidy, subsidy_add, special_subsidy, 
+    total_salary, pension_base, pension_unit, pension_personal, unemployment_insurance_unit, 
+    unemployment_insurance_personal, injury_work_unsurance_unit, medical_pay_base, medical_insurance_unit, 
+    medical_insurance_personal, bear_insurance, decimal_medical_unit, decimal_medical_personal, 
+    house_pay_base, house_pay_unit, house_pay_personal
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from SALARY
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from SALARY
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yufeimen.application.model.Salary" >
+    insert into SALARY (id, data_created, data_creator, 
+      data_updated, data_updator, isDeleted, 
+      name, time, job_salary, 
+      wage_pay, subsidy, job_subsidy, 
+      house_subsidy, manager_subsidy, responsibility_subsidy, 
+      teacher_subsidy, teacher_assist_subsidy, achievement_subsidy, 
+      subsidy_add, special_subsidy, total_salary, 
+      pension_base, pension_unit, pension_personal, 
+      unemployment_insurance_unit, unemployment_insurance_personal, 
+      injury_work_unsurance_unit, medical_pay_base, 
+      medical_insurance_unit, medical_insurance_personal, 
+      bear_insurance, decimal_medical_unit, decimal_medical_personal, 
+      house_pay_base, house_pay_unit, house_pay_personal
+      )
+    values (#{id,jdbcType=INTEGER}, #{dataCreated,jdbcType=VARCHAR}, #{dataCreator,jdbcType=VARCHAR}, 
+      #{dataUpdated,jdbcType=VARCHAR}, #{dataUpdator,jdbcType=VARCHAR}, #{isdeleted,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, #{jobSalary,jdbcType=DOUBLE}, 
+      #{wagePay,jdbcType=DOUBLE}, #{subsidy,jdbcType=DOUBLE}, #{jobSubsidy,jdbcType=DOUBLE}, 
+      #{houseSubsidy,jdbcType=DOUBLE}, #{managerSubsidy,jdbcType=DOUBLE}, #{responsibilitySubsidy,jdbcType=DOUBLE}, 
+      #{teacherSubsidy,jdbcType=DOUBLE}, #{teacherAssistSubsidy,jdbcType=DOUBLE}, #{achievementSubsidy,jdbcType=DOUBLE}, 
+      #{subsidyAdd,jdbcType=DOUBLE}, #{specialSubsidy,jdbcType=DOUBLE}, #{totalSalary,jdbcType=DOUBLE}, 
+      #{pensionBase,jdbcType=DOUBLE}, #{pensionUnit,jdbcType=DOUBLE}, #{pensionPersonal,jdbcType=DOUBLE}, 
+      #{unemploymentInsuranceUnit,jdbcType=DOUBLE}, #{unemploymentInsurancePersonal,jdbcType=DOUBLE}, 
+      #{injuryWorkUnsuranceUnit,jdbcType=DOUBLE}, #{medicalPayBase,jdbcType=DOUBLE}, 
+      #{medicalInsuranceUnit,jdbcType=DOUBLE}, #{medicalInsurancePersonal,jdbcType=DOUBLE}, 
+      #{bearInsurance,jdbcType=DOUBLE}, #{decimalMedicalUnit,jdbcType=DOUBLE}, #{decimalMedicalPersonal,jdbcType=DOUBLE}, 
+      #{housePayBase,jdbcType=DOUBLE}, #{housePayUnit,jdbcType=DOUBLE}, #{housePayPersonal,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yufeimen.application.model.Salary" >
+    insert into SALARY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dataCreated != null" >
+        data_created,
+      </if>
+      <if test="dataCreator != null" >
+        data_creator,
+      </if>
+      <if test="dataUpdated != null" >
+        data_updated,
+      </if>
+      <if test="dataUpdator != null" >
+        data_updator,
+      </if>
+      <if test="isdeleted != null" >
+        isDeleted,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="jobSalary != null" >
+        job_salary,
+      </if>
+      <if test="wagePay != null" >
+        wage_pay,
+      </if>
+      <if test="subsidy != null" >
+        subsidy,
+      </if>
+      <if test="jobSubsidy != null" >
+        job_subsidy,
+      </if>
+      <if test="houseSubsidy != null" >
+        house_subsidy,
+      </if>
+      <if test="managerSubsidy != null" >
+        manager_subsidy,
+      </if>
+      <if test="responsibilitySubsidy != null" >
+        responsibility_subsidy,
+      </if>
+      <if test="teacherSubsidy != null" >
+        teacher_subsidy,
+      </if>
+      <if test="teacherAssistSubsidy != null" >
+        teacher_assist_subsidy,
+      </if>
+      <if test="achievementSubsidy != null" >
+        achievement_subsidy,
+      </if>
+      <if test="subsidyAdd != null" >
+        subsidy_add,
+      </if>
+      <if test="specialSubsidy != null" >
+        special_subsidy,
+      </if>
+      <if test="totalSalary != null" >
+        total_salary,
+      </if>
+      <if test="pensionBase != null" >
+        pension_base,
+      </if>
+      <if test="pensionUnit != null" >
+        pension_unit,
+      </if>
+      <if test="pensionPersonal != null" >
+        pension_personal,
+      </if>
+      <if test="unemploymentInsuranceUnit != null" >
+        unemployment_insurance_unit,
+      </if>
+      <if test="unemploymentInsurancePersonal != null" >
+        unemployment_insurance_personal,
+      </if>
+      <if test="injuryWorkUnsuranceUnit != null" >
+        injury_work_unsurance_unit,
+      </if>
+      <if test="medicalPayBase != null" >
+        medical_pay_base,
+      </if>
+      <if test="medicalInsuranceUnit != null" >
+        medical_insurance_unit,
+      </if>
+      <if test="medicalInsurancePersonal != null" >
+        medical_insurance_personal,
+      </if>
+      <if test="bearInsurance != null" >
+        bear_insurance,
+      </if>
+      <if test="decimalMedicalUnit != null" >
+        decimal_medical_unit,
+      </if>
+      <if test="decimalMedicalPersonal != null" >
+        decimal_medical_personal,
+      </if>
+      <if test="housePayBase != null" >
+        house_pay_base,
+      </if>
+      <if test="housePayUnit != null" >
+        house_pay_unit,
+      </if>
+      <if test="housePayPersonal != null" >
+        house_pay_personal,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dataCreated != null" >
+        #{dataCreated,jdbcType=VARCHAR},
+      </if>
+      <if test="dataCreator != null" >
+        #{dataCreator,jdbcType=VARCHAR},
+      </if>
+      <if test="dataUpdated != null" >
+        #{dataUpdated,jdbcType=VARCHAR},
+      </if>
+      <if test="dataUpdator != null" >
+        #{dataUpdator,jdbcType=VARCHAR},
+      </if>
+      <if test="isdeleted != null" >
+        #{isdeleted,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="jobSalary != null" >
+        #{jobSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="wagePay != null" >
+        #{wagePay,jdbcType=DOUBLE},
+      </if>
+      <if test="subsidy != null" >
+        #{subsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="jobSubsidy != null" >
+        #{jobSubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="houseSubsidy != null" >
+        #{houseSubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="managerSubsidy != null" >
+        #{managerSubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="responsibilitySubsidy != null" >
+        #{responsibilitySubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="teacherSubsidy != null" >
+        #{teacherSubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="teacherAssistSubsidy != null" >
+        #{teacherAssistSubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="achievementSubsidy != null" >
+        #{achievementSubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="subsidyAdd != null" >
+        #{subsidyAdd,jdbcType=DOUBLE},
+      </if>
+      <if test="specialSubsidy != null" >
+        #{specialSubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="totalSalary != null" >
+        #{totalSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="pensionBase != null" >
+        #{pensionBase,jdbcType=DOUBLE},
+      </if>
+      <if test="pensionUnit != null" >
+        #{pensionUnit,jdbcType=DOUBLE},
+      </if>
+      <if test="pensionPersonal != null" >
+        #{pensionPersonal,jdbcType=DOUBLE},
+      </if>
+      <if test="unemploymentInsuranceUnit != null" >
+        #{unemploymentInsuranceUnit,jdbcType=DOUBLE},
+      </if>
+      <if test="unemploymentInsurancePersonal != null" >
+        #{unemploymentInsurancePersonal,jdbcType=DOUBLE},
+      </if>
+      <if test="injuryWorkUnsuranceUnit != null" >
+        #{injuryWorkUnsuranceUnit,jdbcType=DOUBLE},
+      </if>
+      <if test="medicalPayBase != null" >
+        #{medicalPayBase,jdbcType=DOUBLE},
+      </if>
+      <if test="medicalInsuranceUnit != null" >
+        #{medicalInsuranceUnit,jdbcType=DOUBLE},
+      </if>
+      <if test="medicalInsurancePersonal != null" >
+        #{medicalInsurancePersonal,jdbcType=DOUBLE},
+      </if>
+      <if test="bearInsurance != null" >
+        #{bearInsurance,jdbcType=DOUBLE},
+      </if>
+      <if test="decimalMedicalUnit != null" >
+        #{decimalMedicalUnit,jdbcType=DOUBLE},
+      </if>
+      <if test="decimalMedicalPersonal != null" >
+        #{decimalMedicalPersonal,jdbcType=DOUBLE},
+      </if>
+      <if test="housePayBase != null" >
+        #{housePayBase,jdbcType=DOUBLE},
+      </if>
+      <if test="housePayUnit != null" >
+        #{housePayUnit,jdbcType=DOUBLE},
+      </if>
+      <if test="housePayPersonal != null" >
+        #{housePayPersonal,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yufeimen.application.model.Salary" >
+    update SALARY
+    <set >
+      <if test="dataCreated != null" >
+        data_created = #{dataCreated,jdbcType=VARCHAR},
+      </if>
+      <if test="dataCreator != null" >
+        data_creator = #{dataCreator,jdbcType=VARCHAR},
+      </if>
+      <if test="dataUpdated != null" >
+        data_updated = #{dataUpdated,jdbcType=VARCHAR},
+      </if>
+      <if test="dataUpdator != null" >
+        data_updator = #{dataUpdator,jdbcType=VARCHAR},
+      </if>
+      <if test="isdeleted != null" >
+        isDeleted = #{isdeleted,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="jobSalary != null" >
+        job_salary = #{jobSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="wagePay != null" >
+        wage_pay = #{wagePay,jdbcType=DOUBLE},
+      </if>
+      <if test="subsidy != null" >
+        subsidy = #{subsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="jobSubsidy != null" >
+        job_subsidy = #{jobSubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="houseSubsidy != null" >
+        house_subsidy = #{houseSubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="managerSubsidy != null" >
+        manager_subsidy = #{managerSubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="responsibilitySubsidy != null" >
+        responsibility_subsidy = #{responsibilitySubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="teacherSubsidy != null" >
+        teacher_subsidy = #{teacherSubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="teacherAssistSubsidy != null" >
+        teacher_assist_subsidy = #{teacherAssistSubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="achievementSubsidy != null" >
+        achievement_subsidy = #{achievementSubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="subsidyAdd != null" >
+        subsidy_add = #{subsidyAdd,jdbcType=DOUBLE},
+      </if>
+      <if test="specialSubsidy != null" >
+        special_subsidy = #{specialSubsidy,jdbcType=DOUBLE},
+      </if>
+      <if test="totalSalary != null" >
+        total_salary = #{totalSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="pensionBase != null" >
+        pension_base = #{pensionBase,jdbcType=DOUBLE},
+      </if>
+      <if test="pensionUnit != null" >
+        pension_unit = #{pensionUnit,jdbcType=DOUBLE},
+      </if>
+      <if test="pensionPersonal != null" >
+        pension_personal = #{pensionPersonal,jdbcType=DOUBLE},
+      </if>
+      <if test="unemploymentInsuranceUnit != null" >
+        unemployment_insurance_unit = #{unemploymentInsuranceUnit,jdbcType=DOUBLE},
+      </if>
+      <if test="unemploymentInsurancePersonal != null" >
+        unemployment_insurance_personal = #{unemploymentInsurancePersonal,jdbcType=DOUBLE},
+      </if>
+      <if test="injuryWorkUnsuranceUnit != null" >
+        injury_work_unsurance_unit = #{injuryWorkUnsuranceUnit,jdbcType=DOUBLE},
+      </if>
+      <if test="medicalPayBase != null" >
+        medical_pay_base = #{medicalPayBase,jdbcType=DOUBLE},
+      </if>
+      <if test="medicalInsuranceUnit != null" >
+        medical_insurance_unit = #{medicalInsuranceUnit,jdbcType=DOUBLE},
+      </if>
+      <if test="medicalInsurancePersonal != null" >
+        medical_insurance_personal = #{medicalInsurancePersonal,jdbcType=DOUBLE},
+      </if>
+      <if test="bearInsurance != null" >
+        bear_insurance = #{bearInsurance,jdbcType=DOUBLE},
+      </if>
+      <if test="decimalMedicalUnit != null" >
+        decimal_medical_unit = #{decimalMedicalUnit,jdbcType=DOUBLE},
+      </if>
+      <if test="decimalMedicalPersonal != null" >
+        decimal_medical_personal = #{decimalMedicalPersonal,jdbcType=DOUBLE},
+      </if>
+      <if test="housePayBase != null" >
+        house_pay_base = #{housePayBase,jdbcType=DOUBLE},
+      </if>
+      <if test="housePayUnit != null" >
+        house_pay_unit = #{housePayUnit,jdbcType=DOUBLE},
+      </if>
+      <if test="housePayPersonal != null" >
+        house_pay_personal = #{housePayPersonal,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yufeimen.application.model.Salary" >
+    update SALARY
+    set data_created = #{dataCreated,jdbcType=VARCHAR},
+      data_creator = #{dataCreator,jdbcType=VARCHAR},
+      data_updated = #{dataUpdated,jdbcType=VARCHAR},
+      data_updator = #{dataUpdator,jdbcType=VARCHAR},
+      isDeleted = #{isdeleted,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR},
+      job_salary = #{jobSalary,jdbcType=DOUBLE},
+      wage_pay = #{wagePay,jdbcType=DOUBLE},
+      subsidy = #{subsidy,jdbcType=DOUBLE},
+      job_subsidy = #{jobSubsidy,jdbcType=DOUBLE},
+      house_subsidy = #{houseSubsidy,jdbcType=DOUBLE},
+      manager_subsidy = #{managerSubsidy,jdbcType=DOUBLE},
+      responsibility_subsidy = #{responsibilitySubsidy,jdbcType=DOUBLE},
+      teacher_subsidy = #{teacherSubsidy,jdbcType=DOUBLE},
+      teacher_assist_subsidy = #{teacherAssistSubsidy,jdbcType=DOUBLE},
+      achievement_subsidy = #{achievementSubsidy,jdbcType=DOUBLE},
+      subsidy_add = #{subsidyAdd,jdbcType=DOUBLE},
+      special_subsidy = #{specialSubsidy,jdbcType=DOUBLE},
+      total_salary = #{totalSalary,jdbcType=DOUBLE},
+      pension_base = #{pensionBase,jdbcType=DOUBLE},
+      pension_unit = #{pensionUnit,jdbcType=DOUBLE},
+      pension_personal = #{pensionPersonal,jdbcType=DOUBLE},
+      unemployment_insurance_unit = #{unemploymentInsuranceUnit,jdbcType=DOUBLE},
+      unemployment_insurance_personal = #{unemploymentInsurancePersonal,jdbcType=DOUBLE},
+      injury_work_unsurance_unit = #{injuryWorkUnsuranceUnit,jdbcType=DOUBLE},
+      medical_pay_base = #{medicalPayBase,jdbcType=DOUBLE},
+      medical_insurance_unit = #{medicalInsuranceUnit,jdbcType=DOUBLE},
+      medical_insurance_personal = #{medicalInsurancePersonal,jdbcType=DOUBLE},
+      bear_insurance = #{bearInsurance,jdbcType=DOUBLE},
+      decimal_medical_unit = #{decimalMedicalUnit,jdbcType=DOUBLE},
+      decimal_medical_personal = #{decimalMedicalPersonal,jdbcType=DOUBLE},
+      house_pay_base = #{housePayBase,jdbcType=DOUBLE},
+      house_pay_unit = #{housePayUnit,jdbcType=DOUBLE},
+      house_pay_personal = #{housePayPersonal,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
