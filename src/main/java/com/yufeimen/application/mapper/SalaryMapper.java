@@ -1,7 +1,9 @@
 package com.yufeimen.application.mapper;
 
 import com.yufeimen.application.model.Salary;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface SalaryMapper {
     int deleteByPrimaryKey(Integer id);
 

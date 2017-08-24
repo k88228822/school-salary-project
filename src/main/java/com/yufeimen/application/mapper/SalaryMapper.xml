@@ -22,6 +22,8 @@
     <result column="achievement_subsidy" property="achievementSubsidy" jdbcType="DOUBLE" />
     <result column="subsidy_add" property="subsidyAdd" jdbcType="DOUBLE" />
     <result column="special_subsidy" property="specialSubsidy" jdbcType="DOUBLE" />
+    <result column="salary_count" property="salaryCount" jdbcType="DOUBLE" />
+    <result column="subsidy_count" property="subsidyCount" jdbcType="DOUBLE" />
     <result column="total_salary" property="totalSalary" jdbcType="DOUBLE" />
     <result column="pension_base" property="pensionBase" jdbcType="DOUBLE" />
     <result column="pension_unit" property="pensionUnit" jdbcType="DOUBLE" />
@@ -43,10 +45,10 @@
     id, data_created, data_creator, data_updated, data_updator, isDeleted, name, time, 
     job_salary, wage_pay, subsidy, job_subsidy, house_subsidy, manager_subsidy, responsibility_subsidy, 
     teacher_subsidy, teacher_assist_subsidy, achievement_subsidy, subsidy_add, special_subsidy, 
-    total_salary, pension_base, pension_unit, pension_personal, unemployment_insurance_unit, 
-    unemployment_insurance_personal, injury_work_unsurance_unit, medical_pay_base, medical_insurance_unit, 
-    medical_insurance_personal, bear_insurance, decimal_medical_unit, decimal_medical_personal, 
-    house_pay_base, house_pay_unit, house_pay_personal
+    salary_count, subsidy_count, total_salary, pension_base, pension_unit, pension_personal, 
+    unemployment_insurance_unit, unemployment_insurance_personal, injury_work_unsurance_unit, 
+    medical_pay_base, medical_insurance_unit, medical_insurance_personal, bear_insurance, 
+    decimal_medical_unit, decimal_medical_personal, house_pay_base, house_pay_unit, house_pay_personal
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -65,11 +67,11 @@
       wage_pay, subsidy, job_subsidy, 
       house_subsidy, manager_subsidy, responsibility_subsidy, 
       teacher_subsidy, teacher_assist_subsidy, achievement_subsidy, 
-      subsidy_add, special_subsidy, total_salary, 
-      pension_base, pension_unit, pension_personal, 
-      unemployment_insurance_unit, unemployment_insurance_personal, 
-      injury_work_unsurance_unit, medical_pay_base, 
-      medical_insurance_unit, medical_insurance_personal, 
+      subsidy_add, special_subsidy, salary_count, 
+      subsidy_count, total_salary, pension_base, 
+      pension_unit, pension_personal, unemployment_insurance_unit, 
+      unemployment_insurance_personal, injury_work_unsurance_unit, 
+      medical_pay_base, medical_insurance_unit, medical_insurance_personal, 
       bear_insurance, decimal_medical_unit, decimal_medical_personal, 
       house_pay_base, house_pay_unit, house_pay_personal
       )
@@ -79,11 +81,11 @@
       #{wagePay,jdbcType=DOUBLE}, #{subsidy,jdbcType=DOUBLE}, #{jobSubsidy,jdbcType=DOUBLE}, 
       #{houseSubsidy,jdbcType=DOUBLE}, #{managerSubsidy,jdbcType=DOUBLE}, #{responsibilitySubsidy,jdbcType=DOUBLE}, 
       #{teacherSubsidy,jdbcType=DOUBLE}, #{teacherAssistSubsidy,jdbcType=DOUBLE}, #{achievementSubsidy,jdbcType=DOUBLE}, 
-      #{subsidyAdd,jdbcType=DOUBLE}, #{specialSubsidy,jdbcType=DOUBLE}, #{totalSalary,jdbcType=DOUBLE}, 
-      #{pensionBase,jdbcType=DOUBLE}, #{pensionUnit,jdbcType=DOUBLE}, #{pensionPersonal,jdbcType=DOUBLE}, 
-      #{unemploymentInsuranceUnit,jdbcType=DOUBLE}, #{unemploymentInsurancePersonal,jdbcType=DOUBLE}, 
-      #{injuryWorkUnsuranceUnit,jdbcType=DOUBLE}, #{medicalPayBase,jdbcType=DOUBLE}, 
-      #{medicalInsuranceUnit,jdbcType=DOUBLE}, #{medicalInsurancePersonal,jdbcType=DOUBLE}, 
+      #{subsidyAdd,jdbcType=DOUBLE}, #{specialSubsidy,jdbcType=DOUBLE}, #{salaryCount,jdbcType=DOUBLE}, 
+      #{subsidyCount,jdbcType=DOUBLE}, #{totalSalary,jdbcType=DOUBLE}, #{pensionBase,jdbcType=DOUBLE}, 
+      #{pensionUnit,jdbcType=DOUBLE}, #{pensionPersonal,jdbcType=DOUBLE}, #{unemploymentInsuranceUnit,jdbcType=DOUBLE}, 
+      #{unemploymentInsurancePersonal,jdbcType=DOUBLE}, #{injuryWorkUnsuranceUnit,jdbcType=DOUBLE}, 
+      #{medicalPayBase,jdbcType=DOUBLE}, #{medicalInsuranceUnit,jdbcType=DOUBLE}, #{medicalInsurancePersonal,jdbcType=DOUBLE}, 
       #{bearInsurance,jdbcType=DOUBLE}, #{decimalMedicalUnit,jdbcType=DOUBLE}, #{decimalMedicalPersonal,jdbcType=DOUBLE}, 
       #{housePayBase,jdbcType=DOUBLE}, #{housePayUnit,jdbcType=DOUBLE}, #{housePayPersonal,jdbcType=DOUBLE}
       )
@@ -150,6 +152,12 @@
       </if>
       <if test="specialSubsidy != null" >
         special_subsidy,
+      </if>
+      <if test="salaryCount != null" >
+        salary_count,
+      </if>
+      <if test="subsidyCount != null" >
+        subsidy_count,
       </if>
       <if test="totalSalary != null" >
         total_salary,
@@ -261,6 +269,12 @@
       <if test="specialSubsidy != null" >
         #{specialSubsidy,jdbcType=DOUBLE},
       </if>
+      <if test="salaryCount != null" >
+        #{salaryCount,jdbcType=DOUBLE},
+      </if>
+      <if test="subsidyCount != null" >
+        #{subsidyCount,jdbcType=DOUBLE},
+      </if>
       <if test="totalSalary != null" >
         #{totalSalary,jdbcType=DOUBLE},
       </if>
@@ -371,6 +385,12 @@
       <if test="specialSubsidy != null" >
         special_subsidy = #{specialSubsidy,jdbcType=DOUBLE},
       </if>
+      <if test="salaryCount != null" >
+        salary_count = #{salaryCount,jdbcType=DOUBLE},
+      </if>
+      <if test="subsidyCount != null" >
+        subsidy_count = #{subsidyCount,jdbcType=DOUBLE},
+      </if>
       <if test="totalSalary != null" >
         total_salary = #{totalSalary,jdbcType=DOUBLE},
       </if>
@@ -443,6 +463,8 @@
       achievement_subsidy = #{achievementSubsidy,jdbcType=DOUBLE},
       subsidy_add = #{subsidyAdd,jdbcType=DOUBLE},
       special_subsidy = #{specialSubsidy,jdbcType=DOUBLE},
+      salary_count = #{salaryCount,jdbcType=DOUBLE},
+      subsidy_count = #{subsidyCount,jdbcType=DOUBLE},
       total_salary = #{totalSalary,jdbcType=DOUBLE},
       pension_base = #{pensionBase,jdbcType=DOUBLE},
       pension_unit = #{pensionUnit,jdbcType=DOUBLE},

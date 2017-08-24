@@ -20,7 +20,7 @@ import java.util.LinkedList;
 public class FileService {
 
     @Autowired
-    SalaryMapper salaryMapper;
+    public SalaryMapper salaryMapper;
 
     public LinkedList<XLSModel> upload(MultipartHttpServletRequest request, HttpServletResponse response) throws IOException, IllegalAccessException {
         LinkedList<XLSModel> files = new LinkedList<XLSModel>();
@@ -38,15 +38,15 @@ public class FileService {
             } else {
                 throw new RuntimeException("文件类型错误");
             }
-            System.out.println("size:"+model.getContent().size());
             for (int i = 0; i < model.getContent().size(); i++) {
                 Salary salary=new Salary();
                 String[] data = new String[model.getContent().get(i).size()];
+                System.out.println("size"+model.getContent().get(i).size());
                 for (int j = 0; j < model.getContent().get(i).size(); j++) {
                     data[j] = (String) model.getContent().get(i).get(j);
                     System.out.print(data[j]+"   ");
                 }
-                salary=new ObjectUtil<Salary>().initData(salary,data,6);
+                salary=new ObjectUtil<Salary>().initData(salary,data,8);
                 salaryMapper.insert(salary);
             }
 

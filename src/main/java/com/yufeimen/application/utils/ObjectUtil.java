@@ -13,7 +13,7 @@ public class ObjectUtil<T> {
      */
     public T initData(T model,String[]data,int startNum) throws IllegalAccessException {
         Field[] fields=model.getClass().getDeclaredFields();
-
+        System.out.println("class属性长度:"+fields.length);
         for(int i=startNum;i<fields.length;i++){
             String name=fields[i].getName();
             String type=fields[i].getGenericType().toString();

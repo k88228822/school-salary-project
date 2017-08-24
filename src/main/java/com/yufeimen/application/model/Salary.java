@@ -13,9 +13,9 @@ public class Salary {
 
     private Integer isdeleted;
 
-    private String name;
+    private String name="wang";
 
-    private String time;
+    private String time="2017-8-30";
 
     private Double jobSalary;
 
@@ -40,6 +40,10 @@ public class Salary {
     private Double subsidyAdd;
 
     private Double specialSubsidy;
+
+    private Double salaryCount;
+
+    private Double subsidyCount;
 
     private Double totalSalary;
 
@@ -233,6 +237,22 @@ public class Salary {
         this.specialSubsidy = specialSubsidy;
     }
 
+    public Double getSalaryCount() {
+        return salaryCount;
+    }
+
+    public void setSalaryCount(Double salaryCount) {
+        this.salaryCount = salaryCount;
+    }
+
+    public Double getSubsidyCount() {
+        return subsidyCount;
+    }
+
+    public void setSubsidyCount(Double subsidyCount) {
+        this.subsidyCount = subsidyCount;
+    }
+
     public Double getTotalSalary() {
         return totalSalary;
     }
@@ -359,47 +379,5 @@ public class Salary {
 
     public void setHousePayPersonal(Double housePayPersonal) {
         this.housePayPersonal = housePayPersonal;
-    }
-
-    @Override
-    public String toString() {
-        return "Salary{" +
-                "id=" + id +
-                ", dataCreated='" + dataCreated + '\'' +
-                ", dataCreator='" + dataCreator + '\'' +
-                ", dataUpdated='" + dataUpdated + '\'' +
-                ", dataUpdator='" + dataUpdator + '\'' +
-                ", isdeleted=" + isdeleted +
-                ", name='" + name + '\'' +
-                ", time='" + time + '\'' +
-                ", jobSalary=" + jobSalary +
-                ", wagePay=" + wagePay +
-                ", subsidy=" + subsidy +
-                ", jobSubsidy=" + jobSubsidy +
-                ", houseSubsidy=" + houseSubsidy +
-                ", managerSubsidy=" + managerSubsidy +
-                ", responsibilitySubsidy=" + responsibilitySubsidy +
-                ", teacherSubsidy=" + teacherSubsidy +
-                ", teacherAssistSubsidy=" + teacherAssistSubsidy +
-                ", achievementSubsidy=" + achievementSubsidy +
-                ", subsidyAdd=" + subsidyAdd +
-                ", specialSubsidy=" + specialSubsidy +
-                ", totalSalary=" + totalSalary +
-                ", pensionBase=" + pensionBase +
-                ", pensionUnit=" + pensionUnit +
-                ", pensionPersonal=" + pensionPersonal +
-                ", unemploymentInsuranceUnit=" + unemploymentInsuranceUnit +
-                ", unemploymentInsurancePersonal=" + unemploymentInsurancePersonal +
-                ", injuryWorkUnsuranceUnit=" + injuryWorkUnsuranceUnit +
-                ", medicalPayBase=" + medicalPayBase +
-                ", medicalInsuranceUnit=" + medicalInsuranceUnit +
-                ", medicalInsurancePersonal=" + medicalInsurancePersonal +
-                ", bearInsurance=" + bearInsurance +
-                ", decimalMedicalUnit=" + decimalMedicalUnit +
-                ", decimalMedicalPersonal=" + decimalMedicalPersonal +
-                ", housePayBase=" + housePayBase +
-                ", housePayUnit=" + housePayUnit +
-                ", housePayPersonal=" + housePayPersonal +
-                '}';
     }
 }
