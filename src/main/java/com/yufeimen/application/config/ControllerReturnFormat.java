@@ -33,9 +33,9 @@ public class ControllerReturnFormat {
 
     public static JSONObject retParam(int status, String errorMessage) {
         JSONObject ans = new JSONObject();
-        ans.put("errorStatus", status + "-" + messageMap.get(String.valueOf(status)));
-        ans.put("errorMessage", errorMessage);
-        ans.put("successful", Boolean.FALSE);
+        ans.put("error", messageMap.get(String.valueOf(status)));
+        ans.put("status",status);
+        ans.put("message",errorMessage);
         return ans;
     }
 }

@@ -5,6 +5,7 @@ import com.yufeimen.application.mapper.UserMapper;
 import com.yufeimen.application.model.Salary;
 import com.yufeimen.application.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,13 +29,11 @@ public class UserService {
     }
 
     public int updatePassword(String name , String password, String newPassword){
-        User user=baseService.checkNameAndPassword(name,password);
-        user.setPassword(newPassword);
-        return userMapper.updateByPrimaryKey(user);
-    }
-
-    public User login(String name,String password){
-        return baseService.checkNameAndPassword(name,password);
+        baseService.checkNameAndPassword(name,password);
+        List<User> users = userMapper.selectByName(name);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        users.get(0).setPassword(encoder.encode(newPassword));
+        return userMapper.updateByPrimaryKey(users.get(0));
     }
 
 }

@@ -3,12 +3,13 @@
 <mapper namespace="com.yufeimen.application.mapper.UserMapper" >
   <resultMap id="BaseResultMap" type="com.yufeimen.application.model.User" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="rank" property="rank" jdbcType="INTEGER" />
+    <result column="role" property="role" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, password, rank
+    id, username, password, rank, role
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -21,10 +22,10 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yufeimen.application.model.User" >
-    insert into USER (id, name, password, 
-      rank)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{rank,jdbcType=INTEGER})
+    insert into USER (id, username, password, 
+      rank, role)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{rank,jdbcType=INTEGER}, #{role,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.yufeimen.application.model.User" >
     insert into USER
@@ -32,8 +33,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="name != null" >
-        name,
+      <if test="username != null" >
+        username,
       </if>
       <if test="password != null" >
         password,
@@ -41,13 +42,16 @@
       <if test="rank != null" >
         rank,
       </if>
+      <if test="role != null" >
+        role,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
         #{password,jdbcType=VARCHAR},
@@ -55,13 +59,16 @@
       <if test="rank != null" >
         #{rank,jdbcType=INTEGER},
       </if>
+      <if test="role != null" >
+        #{role,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.yufeimen.application.model.User" >
     update USER
     <set >
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
         password = #{password,jdbcType=VARCHAR},
@@ -69,14 +76,18 @@
       <if test="rank != null" >
         rank = #{rank,jdbcType=INTEGER},
       </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yufeimen.application.model.User" >
     update USER
-    set name = #{name,jdbcType=VARCHAR},
+    set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
-      rank = #{rank,jdbcType=INTEGER}
+      rank = #{rank,jdbcType=INTEGER},
+      role = #{role,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

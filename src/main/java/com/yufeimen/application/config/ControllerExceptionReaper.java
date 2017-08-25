@@ -5,6 +5,8 @@ import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -132,4 +134,20 @@ public class ControllerExceptionReaper {
         System.out.println("500...");
         return ControllerReturnFormat.retParam(500, ex.getMessage());
     }
+
+    //401错误
+    @ExceptionHandler({AuthenticationException.class})
+    @ResponseBody
+    public JSONObject server401(AuthenticationException ex) {
+        System.out.println("401...");
+        return ControllerReturnFormat.retParam(401, "无权限访问");
+    }
+    //401错误
+    @ExceptionHandler({InternalAuthenticationServiceException.class})
+    @ResponseBody
+    public JSONObject server401(InternalAuthenticationServiceException ex) {
+        System.out.println("401...");
+        return ControllerReturnFormat.retParam(401, ex.getMessage());
+    }
+
 }

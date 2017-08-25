@@ -1,12 +1,10 @@
 package com.yufeimen.application.mapper;
 
 import com.yufeimen.application.model.User;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
-@Mapper
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -20,7 +18,7 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
 
-    @Select("SELECT * FROM USER WHERE name=#{name}")
+    @Select("SELECT * FROM USER WHERE username=#{name}")
     List<User> selectByName(String name);
 
 }

@@ -40,9 +40,12 @@ public class ControllerFormatHttpMessageConverter implements HttpMessageConverte
     @Override
     public void write(Object o, MediaType mediaType, HttpOutputMessage httpOutputMessage) throws IOException, HttpMessageNotWritableException {
         PrintWriter cout = new PrintWriter(httpOutputMessage.getBody());
-        if (o.toString().contains("errorStatus")) {
-            cout.write(JSON.toJSONString(o, Boolean.TRUE));
-        } else {
+        if(o.toString().contains("error")&&o.toString().contains("status")){
+            JSONObject ans = new JSONObject();
+            ans.put("object", o);
+            ans.put("successful", Boolean.FALSE);
+            cout.write(JSON.toJSONString(ans, Boolean.TRUE));
+        }else{
             JSONObject ans = new JSONObject();
             ans.put("object", o);
             ans.put("successful", Boolean.TRUE);
