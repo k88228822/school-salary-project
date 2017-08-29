@@ -113,15 +113,6 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
-        <!--lombok-->
-        <!--idea开发的话需要安装Lombok plugin，同时设置 Setting -> Compiler -> Annotation Processors -> Enable annotation processing勾选。-->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.16.10</version>
-        </dependency>
-
-
 	</dependencies>
 
 	<build>
