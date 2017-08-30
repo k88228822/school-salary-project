@@ -1,21 +1,23 @@
 package com.yufeimen.application.model;
 
+import java.util.Date;
+
 public class Salary {
     private Integer id;
 
-    private String dataCreated;
+    private Date dataCreated;
 
-    private String dataCreator;
+    private Date dataCreator;
 
-    private String dataUpdated;
+    private Date dataUpdated;
 
-    private String dataUpdator;
+    private Date dataUpdator;
 
     private Integer isdeleted;
 
-    private String name="wang";
+    private Integer name;
 
-    private String time="2017-8-30";
+    private Date time;
 
     private Double jobSalary;
 
@@ -85,36 +87,36 @@ public class Salary {
         this.id = id;
     }
 
-    public String getDataCreated() {
+    public Date getDataCreated() {
         return dataCreated;
     }
 
-    public void setDataCreated(String dataCreated) {
-        this.dataCreated = dataCreated == null ? null : dataCreated.trim();
+    public void setDataCreated(Date dataCreated) {
+        this.dataCreated = dataCreated;
     }
 
-    public String getDataCreator() {
+    public Date getDataCreator() {
         return dataCreator;
     }
 
-    public void setDataCreator(String dataCreator) {
-        this.dataCreator = dataCreator == null ? null : dataCreator.trim();
+    public void setDataCreator(Date dataCreator) {
+        this.dataCreator = dataCreator;
     }
 
-    public String getDataUpdated() {
+    public Date getDataUpdated() {
         return dataUpdated;
     }
 
-    public void setDataUpdated(String dataUpdated) {
-        this.dataUpdated = dataUpdated == null ? null : dataUpdated.trim();
+    public void setDataUpdated(Date dataUpdated) {
+        this.dataUpdated = dataUpdated;
     }
 
-    public String getDataUpdator() {
+    public Date getDataUpdator() {
         return dataUpdator;
     }
 
-    public void setDataUpdator(String dataUpdator) {
-        this.dataUpdator = dataUpdator == null ? null : dataUpdator.trim();
+    public void setDataUpdator(Date dataUpdator) {
+        this.dataUpdator = dataUpdator;
     }
 
     public Integer getIsdeleted() {
@@ -125,20 +127,20 @@ public class Salary {
         this.isdeleted = isdeleted;
     }
 
-    public String getName() {
+    public Integer getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setName(Integer name) {
+        this.name = name;
     }
 
-    public String getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(String time) {
-        this.time = time == null ? null : time.trim();
+    public void setTime(Date time) {
+        this.time = time;
     }
 
     public Double getJobSalary() {

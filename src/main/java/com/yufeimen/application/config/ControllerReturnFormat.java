@@ -8,7 +8,7 @@ import java.util.Map;
 public class ControllerReturnFormat {
     private static Map<String, String> messageMap = new HashMap<>();
 
-    //åˆå§‹åŒ–çŠ¶æ€ç ä¸æ–‡å­—è¯´æ˜
+    //³õÊ¼»¯×´Ì¬ÂëÓëÎÄ×ÖËµÃ÷
     static {
         messageMap.put("0", "");
 
@@ -18,17 +18,17 @@ public class ControllerReturnFormat {
         messageMap.put("406", "Not-Acceptable");
         messageMap.put("500", "Internal-Server-Error");
 
-        messageMap.put("1000", "[æœåŠ¡å™¨]è¿è¡Œæ—¶å¼‚å¸¸");
-        messageMap.put("1001", "[æœåŠ¡å™¨]ç©ºå€¼å¼‚å¸¸");
-        messageMap.put("1002", "[æœåŠ¡å™¨]æ•°æ®ç±»å‹è½¬æ¢å¼‚å¸¸");
-        messageMap.put("1003", "[æœåŠ¡å™¨]IOå¼‚å¸¸");
-        messageMap.put("1004", "[æœåŠ¡å™¨]æœªçŸ¥æ–¹æ³•å¼‚å¸¸");
-        messageMap.put("1005", "[æœåŠ¡å™¨]æ•°ç»„è¶Šç•Œå¼‚å¸¸");
-        messageMap.put("1006", "[æœåŠ¡å™¨]ç½‘ç»œå¼‚å¸¸");
+        messageMap.put("1000", "[·şÎñÆ÷]ÔËĞĞÊ±Òì³£");
+        messageMap.put("1001", "[·şÎñÆ÷]¿ÕÖµÒì³£");
+        messageMap.put("1002", "[·şÎñÆ÷]Êı¾İÀàĞÍ×ª»»Òì³£");
+        messageMap.put("1003", "[·şÎñÆ÷]IOÒì³£");
+        messageMap.put("1004", "[·şÎñÆ÷]Î´Öª·½·¨Òì³£");
+        messageMap.put("1005", "[·şÎñÆ÷]Êı×éÔ½½çÒì³£");
+        messageMap.put("1006", "[·şÎñÆ÷]ÍøÂçÒì³£");
 
-        messageMap.put("2010", "ç¼ºå°‘å‚æ•°æˆ–å€¼ä¸ºç©º");
-        messageMap.put("2029", "å‚æ•°ä¸åˆæ³•");
-        messageMap.put("2020", "æ— æ•ˆçš„Token");
+        messageMap.put("2010", "È±ÉÙ²ÎÊı»òÖµÎª¿Õ");
+        messageMap.put("2029", "²ÎÊı²»ºÏ·¨");
+        messageMap.put("2020", "ÎŞĞ§µÄToken");
     }
 
     public static JSONObject retParam(int status, String errorMessage) {

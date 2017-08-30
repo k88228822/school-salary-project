@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 
 /**
- * å¼‚å¸¸å¢å¼ºï¼Œä»¥JSONçš„å½¢å¼è¿”å›ç»™å®¢æœç«¯
- * å¼‚å¸¸å¢å¼ºç±»å‹ï¼šNullPointerException,RunTimeException,ClassCastException,
+ * Òì³£ÔöÇ¿£¬ÒÔJSONµÄĞÎÊ½·µ»Ø¸ø¿Í·ş¶Ë
+ * Òì³£ÔöÇ¿ÀàĞÍ£ºNullPointerException,RunTimeException,ClassCastException,
  * NoSuchMethodException,IOException,IndexOutOfBoundsException
- * ä»¥åŠspringmvcè‡ªå®šä¹‰å¼‚å¸¸ç­‰ï¼Œå¦‚ä¸‹ï¼š
- * SpringMVCè‡ªå®šä¹‰å¼‚å¸¸å¯¹åº”çš„status code
+ * ÒÔ¼°springmvc×Ô¶¨ÒåÒì³£µÈ£¬ÈçÏÂ£º
+ * SpringMVC×Ô¶¨ÒåÒì³£¶ÔÓ¦µÄstatus code
  * Exception                               HTTP Status Code
  * ConversionNotSupportedException         500 (Internal Server Error)
  * HttpMessageNotWritableException         500 (Internal Server Error)
@@ -36,7 +36,7 @@ import java.io.IOException;
  */
 @ControllerAdvice(annotations = {RestController.class})
 public class ControllerExceptionReaper {
-    //è¿è¡Œæ—¶å¼‚å¸¸
+    //ÔËĞĞÊ±Òì³£
     @ExceptionHandler(RuntimeException.class)
     @ResponseBody
     public JSONObject runtimeExceptionHandler(RuntimeException ex) {
@@ -44,7 +44,7 @@ public class ControllerExceptionReaper {
         return ControllerReturnFormat.retParam(1000, ex.getMessage());
     }
 
-    //ç©ºæŒ‡é’ˆå¼‚å¸¸
+    //¿ÕÖ¸ÕëÒì³£
     @ExceptionHandler(NullPointerException.class)
     @ResponseBody
     public JSONObject nullPointerExceptionHandler(NullPointerException ex) {
@@ -52,7 +52,7 @@ public class ControllerExceptionReaper {
         return ControllerReturnFormat.retParam(1001, ex.getMessage());
     }
 
-    //ç±»å‹è½¬æ¢å¼‚å¸¸
+    //ÀàĞÍ×ª»»Òì³£
     @ExceptionHandler(ClassCastException.class)
     @ResponseBody
     public JSONObject classCastExceptionHandler(ClassCastException ex) {
@@ -60,7 +60,7 @@ public class ControllerExceptionReaper {
         return ControllerReturnFormat.retParam(1002, ex.getMessage());
     }
 
-    //IOå¼‚å¸¸
+    //IOÒì³£
     @ExceptionHandler(IOException.class)
     @ResponseBody
     public JSONObject iOExceptionHandler(IOException ex) {
@@ -68,7 +68,7 @@ public class ControllerExceptionReaper {
         return ControllerReturnFormat.retParam(1003, ex.getMessage());
     }
 
-    //æœªçŸ¥æ–¹æ³•å¼‚å¸¸
+    //Î´Öª·½·¨Òì³£
     @ExceptionHandler(NoSuchMethodException.class)
     @ResponseBody
     public JSONObject noSuchMethodExceptionHandler(NoSuchMethodException ex) {
@@ -76,7 +76,7 @@ public class ControllerExceptionReaper {
         return ControllerReturnFormat.retParam(1004, ex.getMessage());
     }
 
-    //æ•°ç»„è¶Šç•Œå¼‚å¸¸
+    //Êı×éÔ½½çÒì³£
     @ExceptionHandler(IndexOutOfBoundsException.class)
     @ResponseBody
     public JSONObject indexOutOfBoundsExceptionHandler(IndexOutOfBoundsException ex) {
@@ -84,7 +84,7 @@ public class ControllerExceptionReaper {
         return ControllerReturnFormat.retParam(1005, ex.getMessage());
     }
 
-    //400é”™è¯¯
+    //400´íÎó
     @ExceptionHandler({HttpMessageNotReadableException.class})
     @ResponseBody
     public JSONObject requestNotReadable(HttpMessageNotReadableException ex) {
@@ -93,7 +93,7 @@ public class ControllerExceptionReaper {
         return ControllerReturnFormat.retParam(400, ex.getMessage());
     }
 
-    //400é”™è¯¯
+    //400´íÎó
     @ExceptionHandler({TypeMismatchException.class})
     @ResponseBody
     public JSONObject requestTypeMismatch(TypeMismatchException ex) {
@@ -102,7 +102,7 @@ public class ControllerExceptionReaper {
         return ControllerReturnFormat.retParam(400, ex.getMessage());
     }
 
-    //400é”™è¯¯
+    //400´íÎó
     @ExceptionHandler({MissingServletRequestParameterException.class})
     @ResponseBody
     public JSONObject requestMissingServletRequest(MissingServletRequestParameterException ex) {
@@ -111,7 +111,7 @@ public class ControllerExceptionReaper {
         return ControllerReturnFormat.retParam(400, ex.getMessage());
     }
 
-    //405é”™è¯¯
+    //405´íÎó
     @ExceptionHandler({HttpRequestMethodNotSupportedException.class})
     @ResponseBody
     public JSONObject request405(HttpRequestMethodNotSupportedException ex) {
@@ -119,7 +119,7 @@ public class ControllerExceptionReaper {
         return ControllerReturnFormat.retParam(405, ex.getMessage());
     }
 
-    //406é”™è¯¯
+    //406´íÎó
     @ExceptionHandler({HttpMediaTypeNotAcceptableException.class})
     @ResponseBody
     public JSONObject request406(HttpMediaTypeNotAcceptableException ex) {
@@ -127,7 +127,7 @@ public class ControllerExceptionReaper {
         return ControllerReturnFormat.retParam(406, ex.getMessage());
     }
 
-    //500é”™è¯¯
+    //500´íÎó
     @ExceptionHandler({ConversionNotSupportedException.class, HttpMessageNotWritableException.class})
     @ResponseBody
     public JSONObject server500(RuntimeException ex) {
@@ -135,14 +135,14 @@ public class ControllerExceptionReaper {
         return ControllerReturnFormat.retParam(500, ex.getMessage());
     }
 
-    //401é”™è¯¯
+    //401´íÎó
     @ExceptionHandler({AuthenticationException.class})
     @ResponseBody
     public JSONObject server401(AuthenticationException ex) {
         System.out.println("401...");
-        return ControllerReturnFormat.retParam(401, "æ— æƒé™è®¿é—®");
+        return ControllerReturnFormat.retParam(401, "ÎŞÈ¨ÏŞ·ÃÎÊ");
     }
-    //401é”™è¯¯
+    //401´íÎó
     @ExceptionHandler({InternalAuthenticationServiceException.class})
     @ResponseBody
     public JSONObject server401(InternalAuthenticationServiceException ex) {

@@ -61,7 +61,7 @@
             <!--enableUpdateByExample="false">-->
         <!--</table>-->
 
-        <table tableName="USER" domainObjectName="User" enableCountByExample="false"
+        <table tableName="SALARY" domainObjectName="Salary" enableCountByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false">
         </table>

@@ -37,4 +37,11 @@ public class UserController {
         return userService.updatePassword(name,password,newPassword);
     }
 
+    @ResponseBody
+    @RequestMapping("/getSalaryDates")
+    @PreAuthorize("hasRole('USER')")
+    public List<Salary> getALLSalaryDate(@RequestParam("username")String username){
+        return userService.getSalaryDates(username);
+    }
+
 }

@@ -3,13 +3,13 @@
 <mapper namespace="com.yufeimen.application.mapper.SalaryMapper" >
   <resultMap id="BaseResultMap" type="com.yufeimen.application.model.Salary" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="data_created" property="dataCreated" jdbcType="VARCHAR" />
-    <result column="data_creator" property="dataCreator" jdbcType="VARCHAR" />
-    <result column="data_updated" property="dataUpdated" jdbcType="VARCHAR" />
-    <result column="data_updator" property="dataUpdator" jdbcType="VARCHAR" />
+    <result column="data_created" property="dataCreated" jdbcType="TIMESTAMP" />
+    <result column="data_creator" property="dataCreator" jdbcType="TIMESTAMP" />
+    <result column="data_updated" property="dataUpdated" jdbcType="TIMESTAMP" />
+    <result column="data_updator" property="dataUpdator" jdbcType="TIMESTAMP" />
     <result column="isDeleted" property="isdeleted" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
     <result column="job_salary" property="jobSalary" jdbcType="DOUBLE" />
     <result column="wage_pay" property="wagePay" jdbcType="DOUBLE" />
     <result column="subsidy" property="subsidy" jdbcType="DOUBLE" />
@@ -56,6 +56,18 @@
     from SALARY
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectDataByYear" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select
+    <include refid="Base_Column_List" />
+    from SALARY
+    WHERE name = #{userNumber} AND time >= #{date} order by time DESC
+  </select>
+  <select id="selectDataByMonth" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select
+    <include refid="Base_Column_List" />
+    from SALARY
+    WHERE name = #{username} AND time BETWEEN #{firstDate} AND #{lastDate}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from SALARY
     where id = #{id,jdbcType=INTEGER}
@@ -75,9 +87,9 @@
       bear_insurance, decimal_medical_unit, decimal_medical_personal, 
       house_pay_base, house_pay_unit, house_pay_personal
       )
-    values (#{id,jdbcType=INTEGER}, #{dataCreated,jdbcType=VARCHAR}, #{dataCreator,jdbcType=VARCHAR}, 
-      #{dataUpdated,jdbcType=VARCHAR}, #{dataUpdator,jdbcType=VARCHAR}, #{isdeleted,jdbcType=INTEGER}, 
-      #{name,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, #{jobSalary,jdbcType=DOUBLE}, 
+    values (#{id,jdbcType=INTEGER}, #{dataCreated,jdbcType=TIMESTAMP}, #{dataCreator,jdbcType=TIMESTAMP}, 
+      #{dataUpdated,jdbcType=TIMESTAMP}, #{dataUpdator,jdbcType=TIMESTAMP}, #{isdeleted,jdbcType=INTEGER}, 
+      #{name,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{jobSalary,jdbcType=DOUBLE}, 
       #{wagePay,jdbcType=DOUBLE}, #{subsidy,jdbcType=DOUBLE}, #{jobSubsidy,jdbcType=DOUBLE}, 
       #{houseSubsidy,jdbcType=DOUBLE}, #{managerSubsidy,jdbcType=DOUBLE}, #{responsibilitySubsidy,jdbcType=DOUBLE}, 
       #{teacherSubsidy,jdbcType=DOUBLE}, #{teacherAssistSubsidy,jdbcType=DOUBLE}, #{achievementSubsidy,jdbcType=DOUBLE}, 
@@ -213,25 +225,25 @@
         #{id,jdbcType=INTEGER},
       </if>
       <if test="dataCreated != null" >
-        #{dataCreated,jdbcType=VARCHAR},
+        #{dataCreated,jdbcType=TIMESTAMP},
       </if>
       <if test="dataCreator != null" >
-        #{dataCreator,jdbcType=VARCHAR},
+        #{dataCreator,jdbcType=TIMESTAMP},
       </if>
       <if test="dataUpdated != null" >
-        #{dataUpdated,jdbcType=VARCHAR},
+        #{dataUpdated,jdbcType=TIMESTAMP},
       </if>
       <if test="dataUpdator != null" >
-        #{dataUpdator,jdbcType=VARCHAR},
+        #{dataUpdator,jdbcType=TIMESTAMP},
       </if>
       <if test="isdeleted != null" >
         #{isdeleted,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
+        #{name,jdbcType=INTEGER},
       </if>
       <if test="time != null" >
-        #{time,jdbcType=VARCHAR},
+        #{time,jdbcType=TIMESTAMP},
       </if>
       <if test="jobSalary != null" >
         #{jobSalary,jdbcType=DOUBLE},
@@ -329,25 +341,25 @@
     update SALARY
     <set >
       <if test="dataCreated != null" >
-        data_created = #{dataCreated,jdbcType=VARCHAR},
+        data_created = #{dataCreated,jdbcType=TIMESTAMP},
       </if>
       <if test="dataCreator != null" >
-        data_creator = #{dataCreator,jdbcType=VARCHAR},
+        data_creator = #{dataCreator,jdbcType=TIMESTAMP},
       </if>
       <if test="dataUpdated != null" >
-        data_updated = #{dataUpdated,jdbcType=VARCHAR},
+        data_updated = #{dataUpdated,jdbcType=TIMESTAMP},
       </if>
       <if test="dataUpdator != null" >
-        data_updator = #{dataUpdator,jdbcType=VARCHAR},
+        data_updator = #{dataUpdator,jdbcType=TIMESTAMP},
       </if>
       <if test="isdeleted != null" >
         isDeleted = #{isdeleted,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
+        name = #{name,jdbcType=INTEGER},
       </if>
       <if test="time != null" >
-        time = #{time,jdbcType=VARCHAR},
+        time = #{time,jdbcType=TIMESTAMP},
       </if>
       <if test="jobSalary != null" >
         job_salary = #{jobSalary,jdbcType=DOUBLE},
@@ -444,13 +456,13 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yufeimen.application.model.Salary" >
     update SALARY
-    set data_created = #{dataCreated,jdbcType=VARCHAR},
-      data_creator = #{dataCreator,jdbcType=VARCHAR},
-      data_updated = #{dataUpdated,jdbcType=VARCHAR},
-      data_updator = #{dataUpdator,jdbcType=VARCHAR},
+    set data_created = #{dataCreated,jdbcType=TIMESTAMP},
+      data_creator = #{dataCreator,jdbcType=TIMESTAMP},
+      data_updated = #{dataUpdated,jdbcType=TIMESTAMP},
+      data_updator = #{dataUpdator,jdbcType=TIMESTAMP},
       isDeleted = #{isdeleted,jdbcType=INTEGER},
-      name = #{name,jdbcType=VARCHAR},
-      time = #{time,jdbcType=VARCHAR},
+      name = #{name,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP},
       job_salary = #{jobSalary,jdbcType=DOUBLE},
       wage_pay = #{wagePay,jdbcType=DOUBLE},
       subsidy = #{subsidy,jdbcType=DOUBLE},
