@@ -15,7 +15,9 @@ public class Salary {
 
     private Integer isdeleted;
 
-    private Integer name;
+    private Integer usercode;
+
+    private String username;
 
     private Date time;
 
@@ -79,6 +81,26 @@ public class Salary {
 
     private Double housePayPersonal;
 
+    private Double fundUnit;
+
+    private Double fundPersonal;
+
+    private Double unitPayTotal;
+
+    private Double personalPayTotal;
+
+    private Double fiveOneTotal;
+
+    private Double shouldPay;
+
+    private Double personalTax;
+
+    private Double factPay;
+
+    private Double serviceTax;
+
+    private Double unitFinalPay;
+
     public Integer getId() {
         return id;
     }
@@ -127,12 +149,20 @@ public class Salary {
         this.isdeleted = isdeleted;
     }
 
-    public Integer getName() {
-        return name;
+    public Integer getUsercode() {
+        return usercode;
     }
 
-    public void setName(Integer name) {
-        this.name = name;
+    public void setUsercode(Integer usercode) {
+        this.usercode = usercode;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
     }
 
     public Date getTime() {
@@ -381,5 +411,85 @@ public class Salary {
 
     public void setHousePayPersonal(Double housePayPersonal) {
         this.housePayPersonal = housePayPersonal;
+    }
+
+    public Double getFundUnit() {
+        return fundUnit;
+    }
+
+    public void setFundUnit(Double fundUnit) {
+        this.fundUnit = fundUnit;
+    }
+
+    public Double getFundPersonal() {
+        return fundPersonal;
+    }
+
+    public void setFundPersonal(Double fundPersonal) {
+        this.fundPersonal = fundPersonal;
+    }
+
+    public Double getUnitPayTotal() {
+        return unitPayTotal;
+    }
+
+    public void setUnitPayTotal(Double unitPayTotal) {
+        this.unitPayTotal = unitPayTotal;
+    }
+
+    public Double getPersonalPayTotal() {
+        return personalPayTotal;
+    }
+
+    public void setPersonalPayTotal(Double personalPayTotal) {
+        this.personalPayTotal = personalPayTotal;
+    }
+
+    public Double getFiveOneTotal() {
+        return fiveOneTotal;
+    }
+
+    public void setFiveOneTotal(Double fiveOneTotal) {
+        this.fiveOneTotal = fiveOneTotal;
+    }
+
+    public Double getShouldPay() {
+        return shouldPay;
+    }
+
+    public void setShouldPay(Double shouldPay) {
+        this.shouldPay = shouldPay;
+    }
+
+    public Double getPersonalTax() {
+        return personalTax;
+    }
+
+    public void setPersonalTax(Double personalTax) {
+        this.personalTax = personalTax;
+    }
+
+    public Double getFactPay() {
+        return factPay;
+    }
+
+    public void setFactPay(Double factPay) {
+        this.factPay = factPay;
+    }
+
+    public Double getServiceTax() {
+        return serviceTax;
+    }
+
+    public void setServiceTax(Double serviceTax) {
+        this.serviceTax = serviceTax;
+    }
+
+    public Double getUnitFinalPay() {
+        return unitFinalPay;
+    }
+
+    public void setUnitFinalPay(Double unitFinalPay) {
+        this.unitFinalPay = unitFinalPay;
     }
 }

@@ -39,10 +39,10 @@ public class UserService {
         return userMapper.updateByPrimaryKey(users.get(0));
     }
 
-    public List<Salary> getSalaryDates(String userNumber){
+    public List<Salary> getSalaryDates(String usercode){
         Map map=new HashMap<String,Object>();
         map.put("date",DateUtil.formatDate(DateUtil.getCurrYearFirst()));
-        map.put("userNumber",Integer.parseInt(userNumber));
+        map.put("usercode",Integer.parseInt(usercode));
         return  salaryMapper.selectDataByYear(map);
     }
 

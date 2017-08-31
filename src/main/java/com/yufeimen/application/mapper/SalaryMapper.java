@@ -28,7 +28,4 @@ public interface SalaryMapper {
     List<Salary> selectDataByDate(Date date);
 
     List<Salary> selectDataByMonth(Map map);
-
-
-
 }

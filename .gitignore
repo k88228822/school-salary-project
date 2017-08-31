@@ -1,13 +1,5 @@
 target/
-!.mvn/wrapper/maven-wrapper.jar
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
 
 ### IntelliJ IDEA ###
 .idea
@@ -23,5 +15,4 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
-src/main/resources/static/
-src/main/resources/templates/
+

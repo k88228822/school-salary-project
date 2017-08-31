@@ -40,8 +40,8 @@ public class UserController {
     @ResponseBody
     @RequestMapping("/getSalaryDates")
     @PreAuthorize("hasRole('USER')")
-    public List<Salary> getALLSalaryDate(@RequestParam("username")String username){
-        return userService.getSalaryDates(username);
+    public List<Salary> getALLSalaryDate(@RequestParam("usercode")String usercode){
+        return userService.getSalaryDates(usercode);
     }
 
 }

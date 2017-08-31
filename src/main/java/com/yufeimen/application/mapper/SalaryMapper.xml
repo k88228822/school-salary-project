@@ -8,7 +8,8 @@
     <result column="data_updated" property="dataUpdated" jdbcType="TIMESTAMP" />
     <result column="data_updator" property="dataUpdator" jdbcType="TIMESTAMP" />
     <result column="isDeleted" property="isdeleted" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="INTEGER" />
+    <result column="usercode" property="usercode" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="time" property="time" jdbcType="TIMESTAMP" />
     <result column="job_salary" property="jobSalary" jdbcType="DOUBLE" />
     <result column="wage_pay" property="wagePay" jdbcType="DOUBLE" />
@@ -40,15 +41,27 @@
     <result column="house_pay_base" property="housePayBase" jdbcType="DOUBLE" />
     <result column="house_pay_unit" property="housePayUnit" jdbcType="DOUBLE" />
     <result column="house_pay_personal" property="housePayPersonal" jdbcType="DOUBLE" />
+    <result column="fund_unit" property="fundUnit" jdbcType="DOUBLE" />
+    <result column="fund_personal" property="fundPersonal" jdbcType="DOUBLE" />
+    <result column="unit_pay_total" property="unitPayTotal" jdbcType="DOUBLE" />
+    <result column="personal_pay_total" property="personalPayTotal" jdbcType="DOUBLE" />
+    <result column="five_one_total" property="fiveOneTotal" jdbcType="DOUBLE" />
+    <result column="should_pay" property="shouldPay" jdbcType="DOUBLE" />
+    <result column="personal_tax" property="personalTax" jdbcType="DOUBLE" />
+    <result column="fact_pay" property="factPay" jdbcType="DOUBLE" />
+    <result column="service_tax" property="serviceTax" jdbcType="DOUBLE" />
+    <result column="unit_final_pay" property="unitFinalPay" jdbcType="DOUBLE" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, data_created, data_creator, data_updated, data_updator, isDeleted, name, time, 
-    job_salary, wage_pay, subsidy, job_subsidy, house_subsidy, manager_subsidy, responsibility_subsidy, 
-    teacher_subsidy, teacher_assist_subsidy, achievement_subsidy, subsidy_add, special_subsidy, 
-    salary_count, subsidy_count, total_salary, pension_base, pension_unit, pension_personal, 
-    unemployment_insurance_unit, unemployment_insurance_personal, injury_work_unsurance_unit, 
-    medical_pay_base, medical_insurance_unit, medical_insurance_personal, bear_insurance, 
-    decimal_medical_unit, decimal_medical_personal, house_pay_base, house_pay_unit, house_pay_personal
+    id, data_created, data_creator, data_updated, data_updator, isDeleted, usercode, 
+    username, time, job_salary, wage_pay, subsidy, job_subsidy, house_subsidy, manager_subsidy, 
+    responsibility_subsidy, teacher_subsidy, teacher_assist_subsidy, achievement_subsidy, 
+    subsidy_add, special_subsidy, salary_count, subsidy_count, total_salary, pension_base, 
+    pension_unit, pension_personal, unemployment_insurance_unit, unemployment_insurance_personal, 
+    injury_work_unsurance_unit, medical_pay_base, medical_insurance_unit, medical_insurance_personal, 
+    bear_insurance, decimal_medical_unit, decimal_medical_personal, house_pay_base, house_pay_unit, 
+    house_pay_personal, fund_unit, fund_personal, unit_pay_total, personal_pay_total, 
+    five_one_total, should_pay, personal_tax, fact_pay, service_tax, unit_final_pay
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -60,13 +73,13 @@
     select
     <include refid="Base_Column_List" />
     from SALARY
-    WHERE name = #{userNumber} AND time >= #{date} order by time DESC
+    WHERE usercode= #{usercode} AND time >= #{date} order by time DESC
   </select>
   <select id="selectDataByMonth" resultMap="BaseResultMap" parameterType="java.util.Map">
     select
     <include refid="Base_Column_List" />
     from SALARY
-    WHERE name = #{username} AND time BETWEEN #{firstDate} AND #{lastDate}
+    WHERE usercode= #{usercode} AND time BETWEEN #{firstDate} AND #{lastDate}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from SALARY
@@ -75,32 +88,40 @@
   <insert id="insert" parameterType="com.yufeimen.application.model.Salary" >
     insert into SALARY (id, data_created, data_creator, 
       data_updated, data_updator, isDeleted, 
-      name, time, job_salary, 
-      wage_pay, subsidy, job_subsidy, 
-      house_subsidy, manager_subsidy, responsibility_subsidy, 
-      teacher_subsidy, teacher_assist_subsidy, achievement_subsidy, 
-      subsidy_add, special_subsidy, salary_count, 
-      subsidy_count, total_salary, pension_base, 
-      pension_unit, pension_personal, unemployment_insurance_unit, 
-      unemployment_insurance_personal, injury_work_unsurance_unit, 
-      medical_pay_base, medical_insurance_unit, medical_insurance_personal, 
+      usercode, username, time, 
+      job_salary, wage_pay, subsidy, 
+      job_subsidy, house_subsidy, manager_subsidy, 
+      responsibility_subsidy, teacher_subsidy, teacher_assist_subsidy, 
+      achievement_subsidy, subsidy_add, special_subsidy, 
+      salary_count, subsidy_count, total_salary, 
+      pension_base, pension_unit, pension_personal, 
+      unemployment_insurance_unit, unemployment_insurance_personal, 
+      injury_work_unsurance_unit, medical_pay_base, 
+      medical_insurance_unit, medical_insurance_personal, 
       bear_insurance, decimal_medical_unit, decimal_medical_personal, 
-      house_pay_base, house_pay_unit, house_pay_personal
-      )
+      house_pay_base, house_pay_unit, house_pay_personal, 
+      fund_unit, fund_personal, unit_pay_total, 
+      personal_pay_total, five_one_total, should_pay, 
+      personal_tax, fact_pay, service_tax, 
+      unit_final_pay)
     values (#{id,jdbcType=INTEGER}, #{dataCreated,jdbcType=TIMESTAMP}, #{dataCreator,jdbcType=TIMESTAMP}, 
       #{dataUpdated,jdbcType=TIMESTAMP}, #{dataUpdator,jdbcType=TIMESTAMP}, #{isdeleted,jdbcType=INTEGER}, 
-      #{name,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{jobSalary,jdbcType=DOUBLE}, 
-      #{wagePay,jdbcType=DOUBLE}, #{subsidy,jdbcType=DOUBLE}, #{jobSubsidy,jdbcType=DOUBLE}, 
-      #{houseSubsidy,jdbcType=DOUBLE}, #{managerSubsidy,jdbcType=DOUBLE}, #{responsibilitySubsidy,jdbcType=DOUBLE}, 
-      #{teacherSubsidy,jdbcType=DOUBLE}, #{teacherAssistSubsidy,jdbcType=DOUBLE}, #{achievementSubsidy,jdbcType=DOUBLE}, 
-      #{subsidyAdd,jdbcType=DOUBLE}, #{specialSubsidy,jdbcType=DOUBLE}, #{salaryCount,jdbcType=DOUBLE}, 
-      #{subsidyCount,jdbcType=DOUBLE}, #{totalSalary,jdbcType=DOUBLE}, #{pensionBase,jdbcType=DOUBLE}, 
-      #{pensionUnit,jdbcType=DOUBLE}, #{pensionPersonal,jdbcType=DOUBLE}, #{unemploymentInsuranceUnit,jdbcType=DOUBLE}, 
-      #{unemploymentInsurancePersonal,jdbcType=DOUBLE}, #{injuryWorkUnsuranceUnit,jdbcType=DOUBLE}, 
-      #{medicalPayBase,jdbcType=DOUBLE}, #{medicalInsuranceUnit,jdbcType=DOUBLE}, #{medicalInsurancePersonal,jdbcType=DOUBLE}, 
+      #{usercode,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
+      #{jobSalary,jdbcType=DOUBLE}, #{wagePay,jdbcType=DOUBLE}, #{subsidy,jdbcType=DOUBLE}, 
+      #{jobSubsidy,jdbcType=DOUBLE}, #{houseSubsidy,jdbcType=DOUBLE}, #{managerSubsidy,jdbcType=DOUBLE}, 
+      #{responsibilitySubsidy,jdbcType=DOUBLE}, #{teacherSubsidy,jdbcType=DOUBLE}, #{teacherAssistSubsidy,jdbcType=DOUBLE}, 
+      #{achievementSubsidy,jdbcType=DOUBLE}, #{subsidyAdd,jdbcType=DOUBLE}, #{specialSubsidy,jdbcType=DOUBLE}, 
+      #{salaryCount,jdbcType=DOUBLE}, #{subsidyCount,jdbcType=DOUBLE}, #{totalSalary,jdbcType=DOUBLE}, 
+      #{pensionBase,jdbcType=DOUBLE}, #{pensionUnit,jdbcType=DOUBLE}, #{pensionPersonal,jdbcType=DOUBLE}, 
+      #{unemploymentInsuranceUnit,jdbcType=DOUBLE}, #{unemploymentInsurancePersonal,jdbcType=DOUBLE}, 
+      #{injuryWorkUnsuranceUnit,jdbcType=DOUBLE}, #{medicalPayBase,jdbcType=DOUBLE}, 
+      #{medicalInsuranceUnit,jdbcType=DOUBLE}, #{medicalInsurancePersonal,jdbcType=DOUBLE}, 
       #{bearInsurance,jdbcType=DOUBLE}, #{decimalMedicalUnit,jdbcType=DOUBLE}, #{decimalMedicalPersonal,jdbcType=DOUBLE}, 
-      #{housePayBase,jdbcType=DOUBLE}, #{housePayUnit,jdbcType=DOUBLE}, #{housePayPersonal,jdbcType=DOUBLE}
-      )
+      #{housePayBase,jdbcType=DOUBLE}, #{housePayUnit,jdbcType=DOUBLE}, #{housePayPersonal,jdbcType=DOUBLE}, 
+      #{fundUnit,jdbcType=DOUBLE}, #{fundPersonal,jdbcType=DOUBLE}, #{unitPayTotal,jdbcType=DOUBLE}, 
+      #{personalPayTotal,jdbcType=DOUBLE}, #{fiveOneTotal,jdbcType=DOUBLE}, #{shouldPay,jdbcType=DOUBLE}, 
+      #{personalTax,jdbcType=DOUBLE}, #{factPay,jdbcType=DOUBLE}, #{serviceTax,jdbcType=DOUBLE}, 
+      #{unitFinalPay,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="com.yufeimen.application.model.Salary" >
     insert into SALARY
@@ -123,8 +144,11 @@
       <if test="isdeleted != null" >
         isDeleted,
       </if>
-      <if test="name != null" >
-        name,
+      <if test="usercode != null" >
+        usercode,
+      </if>
+      <if test="username != null" >
+        username,
       </if>
       <if test="time != null" >
         time,
@@ -219,6 +243,36 @@
       <if test="housePayPersonal != null" >
         house_pay_personal,
       </if>
+      <if test="fundUnit != null" >
+        fund_unit,
+      </if>
+      <if test="fundPersonal != null" >
+        fund_personal,
+      </if>
+      <if test="unitPayTotal != null" >
+        unit_pay_total,
+      </if>
+      <if test="personalPayTotal != null" >
+        personal_pay_total,
+      </if>
+      <if test="fiveOneTotal != null" >
+        five_one_total,
+      </if>
+      <if test="shouldPay != null" >
+        should_pay,
+      </if>
+      <if test="personalTax != null" >
+        personal_tax,
+      </if>
+      <if test="factPay != null" >
+        fact_pay,
+      </if>
+      <if test="serviceTax != null" >
+        service_tax,
+      </if>
+      <if test="unitFinalPay != null" >
+        unit_final_pay,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -239,8 +293,11 @@
       <if test="isdeleted != null" >
         #{isdeleted,jdbcType=INTEGER},
       </if>
-      <if test="name != null" >
-        #{name,jdbcType=INTEGER},
+      <if test="usercode != null" >
+        #{usercode,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
       </if>
       <if test="time != null" >
         #{time,jdbcType=TIMESTAMP},
@@ -335,6 +392,36 @@
       <if test="housePayPersonal != null" >
         #{housePayPersonal,jdbcType=DOUBLE},
       </if>
+      <if test="fundUnit != null" >
+        #{fundUnit,jdbcType=DOUBLE},
+      </if>
+      <if test="fundPersonal != null" >
+        #{fundPersonal,jdbcType=DOUBLE},
+      </if>
+      <if test="unitPayTotal != null" >
+        #{unitPayTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="personalPayTotal != null" >
+        #{personalPayTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="fiveOneTotal != null" >
+        #{fiveOneTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="shouldPay != null" >
+        #{shouldPay,jdbcType=DOUBLE},
+      </if>
+      <if test="personalTax != null" >
+        #{personalTax,jdbcType=DOUBLE},
+      </if>
+      <if test="factPay != null" >
+        #{factPay,jdbcType=DOUBLE},
+      </if>
+      <if test="serviceTax != null" >
+        #{serviceTax,jdbcType=DOUBLE},
+      </if>
+      <if test="unitFinalPay != null" >
+        #{unitFinalPay,jdbcType=DOUBLE},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.yufeimen.application.model.Salary" >
@@ -355,8 +442,11 @@
       <if test="isdeleted != null" >
         isDeleted = #{isdeleted,jdbcType=INTEGER},
       </if>
-      <if test="name != null" >
-        name = #{name,jdbcType=INTEGER},
+      <if test="usercode != null" >
+        usercode = #{usercode,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
       </if>
       <if test="time != null" >
         time = #{time,jdbcType=TIMESTAMP},
@@ -451,6 +541,36 @@
       <if test="housePayPersonal != null" >
         house_pay_personal = #{housePayPersonal,jdbcType=DOUBLE},
       </if>
+      <if test="fundUnit != null" >
+        fund_unit = #{fundUnit,jdbcType=DOUBLE},
+      </if>
+      <if test="fundPersonal != null" >
+        fund_personal = #{fundPersonal,jdbcType=DOUBLE},
+      </if>
+      <if test="unitPayTotal != null" >
+        unit_pay_total = #{unitPayTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="personalPayTotal != null" >
+        personal_pay_total = #{personalPayTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="fiveOneTotal != null" >
+        five_one_total = #{fiveOneTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="shouldPay != null" >
+        should_pay = #{shouldPay,jdbcType=DOUBLE},
+      </if>
+      <if test="personalTax != null" >
+        personal_tax = #{personalTax,jdbcType=DOUBLE},
+      </if>
+      <if test="factPay != null" >
+        fact_pay = #{factPay,jdbcType=DOUBLE},
+      </if>
+      <if test="serviceTax != null" >
+        service_tax = #{serviceTax,jdbcType=DOUBLE},
+      </if>
+      <if test="unitFinalPay != null" >
+        unit_final_pay = #{unitFinalPay,jdbcType=DOUBLE},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -461,7 +581,8 @@
       data_updated = #{dataUpdated,jdbcType=TIMESTAMP},
       data_updator = #{dataUpdator,jdbcType=TIMESTAMP},
       isDeleted = #{isdeleted,jdbcType=INTEGER},
-      name = #{name,jdbcType=INTEGER},
+      usercode = #{usercode,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
       time = #{time,jdbcType=TIMESTAMP},
       job_salary = #{jobSalary,jdbcType=DOUBLE},
       wage_pay = #{wagePay,jdbcType=DOUBLE},
@@ -492,7 +613,17 @@
       decimal_medical_personal = #{decimalMedicalPersonal,jdbcType=DOUBLE},
       house_pay_base = #{housePayBase,jdbcType=DOUBLE},
       house_pay_unit = #{housePayUnit,jdbcType=DOUBLE},
-      house_pay_personal = #{housePayPersonal,jdbcType=DOUBLE}
+      house_pay_personal = #{housePayPersonal,jdbcType=DOUBLE},
+      fund_unit = #{fundUnit,jdbcType=DOUBLE},
+      fund_personal = #{fundPersonal,jdbcType=DOUBLE},
+      unit_pay_total = #{unitPayTotal,jdbcType=DOUBLE},
+      personal_pay_total = #{personalPayTotal,jdbcType=DOUBLE},
+      five_one_total = #{fiveOneTotal,jdbcType=DOUBLE},
+      should_pay = #{shouldPay,jdbcType=DOUBLE},
+      personal_tax = #{personalTax,jdbcType=DOUBLE},
+      fact_pay = #{factPay,jdbcType=DOUBLE},
+      service_tax = #{serviceTax,jdbcType=DOUBLE},
+      unit_final_pay = #{unitFinalPay,jdbcType=DOUBLE}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

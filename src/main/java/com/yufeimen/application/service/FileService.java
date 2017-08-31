@@ -3,9 +3,9 @@ package com.yufeimen.application.service;
 import com.yufeimen.application.mapper.SalaryMapper;
 import com.yufeimen.application.mapper.UserMapper;
 import com.yufeimen.application.model.Salary;
+import com.yufeimen.application.model.User;
 import com.yufeimen.application.model.XLSModel;
 import com.yufeimen.application.utils.DateUtil;
-import com.yufeimen.application.utils.ObjectUtil;
 import com.yufeimen.application.utils.XLSUtil;
 import com.yufeimen.application.utils.XLSXUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +26,9 @@ public class FileService {
     @Autowired
     public SalaryMapper salaryMapper;
 
+    @Autowired
+    public AuthService authService;
+
     public LinkedList<XLSModel> upload(MultipartHttpServletRequest request, HttpServletResponse response) throws IOException, IllegalAccessException {
         LinkedList<XLSModel> files = new LinkedList<XLSModel>();
         Iterator<String> itr = request.getFileNames();
@@ -40,7 +43,7 @@ public class FileService {
             } else if (fileType.equalsIgnoreCase("xls")) {
                 model = new XLSUtil().getFromStream(mpf.getInputStream());
             } else {
-                throw new RuntimeException("文件类型错误");
+                throw new RuntimeException("鏂囦欢鏍煎紡閿欒锛岃涓婁紶xlsx鎴杧ls鏍煎紡鏂囦欢");
             }
 
             for (int i = 0; i < model.getContent().size(); i++) {
@@ -48,10 +51,16 @@ public class FileService {
                 String[] data = new String[model.getContent().get(i).size()];
                 for (int j = 0; j < model.getContent().get(i).size(); j++) {
                     data[j] = (String) model.getContent().get(i).get(j);
-                    System.out.print(data[j]+"   ");
+                    System.out.println(data[j]+"  ");
                 }
-                salary=new ObjectUtil<Salary>().initData(salary,data,6);
-                checkAndInsertSalary(salary);
+                User user=new User();
+                user.setPassword("123");
+                user.setUsername(Integer.parseInt(data[0])+"");
+                user.setRank(1);
+                authService.register(user);
+
+//                salary=new ObjectUtil<Salary>().initData(salary,data,6);
+//                checkAndInsertSalary(salary);
             }
 
         }
@@ -61,14 +70,14 @@ public class FileService {
 
 
     public void checkAndInsertSalary(Salary salary){
-       if( userMapper.selectByName(salary.getName()+"").size()==0){
-           throw new RuntimeException("用户："+salary.getName()+"尚未注册，无法上传数据");
+       if( userMapper.selectByName(salary.getUsercode()+"").size()==0){
+           throw new RuntimeException("鐢ㄦ埛"+salary.getUsercode()+"灏氭湭娉ㄥ唽");
        }
 
         Map<String,Object> map=new HashMap<>();
         map.put("firstDate", DateUtil.getMonthFirst(salary.getTime()));
         map.put("lastDate",DateUtil.getMonthLast(salary.getTime()));
-        map.put("username",salary.getName());
+        map.put("usercode",salary.getUsercode());
         List<Salary> salaries=salaryMapper.selectDataByMonth(map);
         if(salaries.size()>0){
             salary.setId(salaries.get(0).getId());

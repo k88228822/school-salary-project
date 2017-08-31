@@ -20,7 +20,7 @@ public class BaseService {
             final Authentication authentication = authenticationManager.authenticate(upToken);
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }catch (Exception e){
-            throw new RuntimeException("用户名或密码错误");
+            throw new RuntimeException("鐢ㄦ埛鍚嶆垨瀵嗙爜閿欒");
         }
     }
 
